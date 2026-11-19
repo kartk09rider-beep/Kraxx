@@ -26,7 +26,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Make Release & Plugins JSON
-        run: ./gradlew make
+        run: ./gradlew:app:make
 
       - name: Deploy to builds branch
         uses: JamesIves/github-pages-deploy-action@v4
