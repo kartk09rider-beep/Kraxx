@@ -28,16 +28,18 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
+        working-directory: src
         run: chmod +x ./gradlew
 
       - name: Make Release & Plugins JSON
+        working-directory: src
         run: ./gradlew make makePluginsJson --stacktrace
 
       - name: Collect output
         run: |
           mkdir -p build/release
-          cp */build/*.cs3 build/release/
-          cp build/plugins.json build/release/
+          cp src/*/build/*.cs3 build/release/
+          cp src/build/plugins.json build/release/
           ls -la build/release
 
       - name: Deploy to builds branch
@@ -45,4 +47,3 @@ jobs:
         with:
           branch: builds
           folder: build/release
-          
